@@ -11,6 +11,7 @@ const servicesData = {
     items: [
       { title: 'طراحی و پیاده‌سازی پلتفرم کامل (SaaS)', price: 'توافقی', time: '7-15 روز', features: ['فرانت‌اند Next.js', 'بک‌اند، دیتابیس کامل', 'پنل ادمین'] },
       { title: 'معماری و پیاده‌سازی میکروسرویس', price: 'توافقی', time: 'بر اساس پروژه', features: ['معماری با Go', 'پیام‌رسان Kafka', 'کش Redis، مقیاس‌پذیری بالا'] },
+      { title: 'طراحی و توسعه RESTful API', price: 'توافقی', time: '3-7 روز', features: ['مستندسازی با Swagger', 'احراز هویت (JWT/OAuth)', 'امنیت و Rate Limiting'] },
       { title: 'ساخت ربات تلگرام / بله + مینی‌اپ', price: '4,500,000', time: '3-5 روز', features: ['بک‌اند Go', 'مینی‌اپ (Next.js)', 'اتصال به API پیام‌رسان'] },
       { title: 'طراحی دیتابیس و API برای اپلیکیشن', price: 'توافقی', time: '3-7 روز', features: ['طراحی معماری (Postgres)', 'توسعه API اختصاصی'] },
     ]
@@ -63,7 +64,7 @@ const servicesData = {
 type TabKey = keyof typeof servicesData;
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState<TabKey>('devsecops');
+  const [activeTab, setActiveTab] = useState<TabKey>('fullstack'); // پیش‌فرض روی فول‌استک تنظیم شد
 
   return (
     <section id="services" className="py-24 px-6 max-w-7xl mx-auto relative z-10 bg-[#0A0A0B]">
