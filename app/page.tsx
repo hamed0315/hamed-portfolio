@@ -20,7 +20,7 @@ export default function Home() {
             <a href="#work" className="hover:text-white transition-colors">نمونه کارها</a>
             <a href="#about" className="hover:text-white transition-colors">درباره من</a>
           </div>
-          <a href="https://t.me/YourUsername" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center gap-2">
+          <a href="https://t.me/Hamed_hasouedi" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center gap-2">
             شروع گفتگو
             <Send size={16} />
           </a>
@@ -60,7 +60,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <a href="https://t.me/YourUsername" target="_blank" rel="noopener noreferrer" className="bg-[#C8FF4D] text-black font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform flex items-center gap-2">
+            <a href="https://t.me/Hamed_hasouedi" target="_blank" rel="noopener noreferrer" className="bg-[#C8FF4D] text-black font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform flex items-center gap-2">
               ثبت سفارش در تلگرام <ArrowLeft size={18} />
             </a>
             <a href="#services" className="text-gray-300 px-6 py-3 rounded-xl border border-white/10 hover:bg-white/5 transition-colors font-medium">

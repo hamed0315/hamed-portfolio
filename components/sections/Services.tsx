@@ -140,7 +140,7 @@ export default function Services() {
               </div>
 
               <a 
-                href="https://t.me/YourUsername" 
+                href="https://t.me/Hamed_hasouedi" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={`relative z-10 flex items-center justify-between w-full p-3 rounded-xl text-sm font-medium transition-colors duration-300
