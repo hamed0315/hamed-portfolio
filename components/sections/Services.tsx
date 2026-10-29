@@ -2,11 +2,21 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Server, Database, Globe, CheckCircle2, ArrowLeft, LifeBuoy } from 'lucide-react';
+import { Shield, Server, Database, Globe, CheckCircle2, ArrowLeft, LifeBuoy, Code2, Terminal } from 'lucide-react';
 
 const servicesData = {
+  fullstack: {
+    label: 'توسعه وب و بک‌اند',
+    icon: <Code2 className="w-4 h-4" />,
+    items: [
+      { title: 'طراحی و پیاده‌سازی پلتفرم کامل (SaaS)', price: 'توافقی', time: '7-15 روز', features: ['فرانت‌اند Next.js', 'بک‌اند، دیتابیس کامل', 'پنل ادمین'] },
+      { title: 'معماری و پیاده‌سازی میکروسرویس', price: 'توافقی', time: 'بر اساس پروژه', features: ['معماری با Go', 'پیام‌رسان Kafka', 'کش Redis، مقیاس‌پذیری بالا'] },
+      { title: 'ساخت ربات تلگرام / بله + مینی‌اپ', price: '4,500,000', time: '3-5 روز', features: ['بک‌اند Go', 'مینی‌اپ (Next.js)', 'اتصال به API پیام‌رسان'] },
+      { title: 'طراحی دیتابیس و API برای اپلیکیشن', price: 'توافقی', time: '3-7 روز', features: ['طراحی معماری (Postgres)', 'توسعه API اختصاصی'] },
+    ]
+  },
   devops: {
-    label: 'DevOps',
+    label: 'DevOps (زیرساخت)',
     icon: <Server className="w-4 h-4" />,
     items: [
       { title: 'راه‌اندازی سرور امن', price: '1,500,000', time: '1-3 روز', features: ['SSH Key', 'فایروال UFW', 'غیرفعال‌سازی root'] },
@@ -29,29 +39,23 @@ const servicesData = {
       { title: 'اسکن آسیب‌پذیری اپ', price: '4,500,000', time: '2-3 روز', features: ['تحلیل SAST', 'اسکن ایمیج داکر', 'رفع باگ'], featured: true },
     ]
   },
+  wp_odoo: {
+    label: 'وردپرس و Odoo',
+    icon: <Globe className="w-4 h-4" />,
+    items: [
+      { title: 'وردپرس: بهینه‌سازی سرعت', price: '2,500,000', time: '1-2 روز', features: ['Core Web Vitals', 'کش سرور', 'رفع خطای 503'] },
+      { title: 'وردپرس: رفع هک و امنیت', price: '3,500,000', time: '1-3 روز', features: ['پاکسازی بدافزار', 'امن‌سازی', 'فایروال'] },
+      { title: 'وردپرس: انتقال سرور', price: '2,500,000', time: '1 روز', features: ['انتقال دیتابیس', 'تنظیم DNS', 'SSL جدید'] },
+      { title: 'Odoo: استقرار و بهینه‌سازی', price: '8,500,000', time: '3-5 روز', features: ['Docker', 'بهینه‌سازی PostgreSQL', 'Redis Cache'] },
+      { title: 'Odoo: امنیت و پایداری', price: '5,500,000', time: '2 روز', features: ['Hardening', 'بکاپ خودکار', 'Zero-Downtime'] },
+    ]
+  },
   support: {
     label: 'پشتیبانی ماهانه',
     icon: <LifeBuoy className="w-4 h-4" />,
     items: [
       { title: 'مراقبت ماهانه (پایه)', price: '1,500,000/ماه', time: 'ماهانه', features: ['آپدیت', 'مانیتورینگ', 'بکاپ', 'پشتیبانی تلگرام'] },
       { title: 'مراقبت ماهانه (حرفه‌ای)', price: '3,500,000/ماه', time: 'ماهانه', features: ['بهینه‌سازی', 'رفع مشکل', 'گزارش ماهانه'] },
-    ]
-  },
-  wordpress: {
-    label: 'WordPress',
-    icon: <Globe className="w-4 h-4" />,
-    items: [
-      { title: 'بهینه‌سازی سرعت', price: '2,500,000', time: '1-2 روز', features: ['Core Web Vitals', 'کش سرور', 'رفع خطای 503'] },
-      { title: 'رفع هک و امنیت', price: '3,500,000', time: '1-3 روز', features: ['پاکسازی بدافزار', 'امن‌سازی', 'فایروال'] },
-      { title: 'انتقال سرور', price: '2,500,000', time: '1 روز', features: ['انتقال دیتابیس', 'تنظیم DNS', 'SSL جدید'] },
-    ]
-  },
-  odoo: {
-    label: 'Odoo (ERP)',
-    icon: <Database className="w-4 h-4" />,
-    items: [
-      { title: 'استقرار و بهینه‌سازی', price: '8,500,000', time: '3-5 روز', features: ['Docker', 'بهینه‌سازی PostgreSQL', 'Redis Cache'] },
-      { title: 'امنیت و پایداری', price: '5,500,000', time: '2 روز', features: ['Hardening', 'بکاپ خودکار', 'Zero-Downtime'] },
     ]
   }
 };
@@ -72,7 +76,7 @@ export default function Services() {
           پکیج‌های تخصصی
         </h2>
         <p className="text-gray-400 max-w-2xl text-lg font-light">
-          تمامی پکیج‌ها شامل 7 روز پشتیبانی رایگان و مستندسازی کامل هستند.
+          تمامی پکیج‌ها شامل 7 روز پشتیبانی رایگان و مستندسازی کامل هستند. برای پروژه‌های بزرگ و اختصاصی، جهت مشاوره و برآورد هزینه تماس بگیرید.
         </p>
       </div>
 
@@ -119,7 +123,7 @@ export default function Services() {
                 
                 <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400 mb-6 font-mono">
                   <span className={`px-3 py-1 rounded-md ${service.featured ? 'bg-[#C8FF4D]/10 text-[#C8FF4D]' : 'bg-white/5'}`}>
-                    {service.price} تومان
+                    {service.price === 'توافقی' ? 'توافقی' : `${service.price} تومان`}
                   </span>
                   <span>{service.time}</span>
                 </div>
@@ -143,7 +147,7 @@ export default function Services() {
                     ? 'bg-[#C8FF4D] text-black hover:bg-white' 
                     : 'bg-white/5 text-white hover:bg-white/10'}`}
               >
-                ثبت سفارش
+                {service.price === 'توافقی' ? 'مشاوره و سفارش' : 'ثبت سفارش'}
                 <ArrowLeft className="w-4 h-4" />
               </a>
             </motion.div>
