@@ -5,7 +5,7 @@ import { ArrowLeft, Send, Terminal, ShieldCheck, Server } from 'lucide-react';
 import Services from '@/components/sections/Services';
 import TechMarquee from '@/components/sections/TechMarquee';
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Home() {
   return (
