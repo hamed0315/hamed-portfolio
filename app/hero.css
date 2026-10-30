@@ -1,0 +1,182 @@
+
+/* Hero tokens + materials. Imported once from app/page.tsx. */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --lime: #c8ff4d;
+}
+
+@keyframes fadeRise { from { opacity: 0; transform: translateY(var(--rise, 22px)); } to { opacity: 1; transform: none; } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+.in-fade { animation: fadeRise 1s var(--ease-out-expo) var(--d, 0ms) both; }
+.in-down { animation: fadeDown 0.8s var(--ease-out-expo) var(--d, 0ms) both; }
+
+.mw {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.2em 0.12em 0.3em;
+  margin: -0.2em -0.12em -0.3em;
+}
+.mw-i {
+  display: inline-block;
+  animation: mw-up 1.2s var(--ease-out-expo) both;
+  animation-delay: calc(0.45s + var(--i, 0) * 0.08s);
+}
+@keyframes mw-up { from { transform: translateY(110%); } }
+
+.mw-accent {
+  background-image: linear-gradient(to right, #c8ff4d 0%, #8dbb1a 20%, #c8ff4d 38%, #f6ffd0 50%, #c8ff4d 62%, #8dbb1a 80%, #c8ff4d 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: mw-up 1.2s var(--ease-out-expo) both, shine 7s linear infinite;
+  animation-delay: calc(0.45s + var(--i, 0) * 0.08s), 1.8s;
+}
+@keyframes shine { from { background-position: -200% center; } to { background-position: 200% center; } }
+
+.liquid-glass {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--rim, 255, 255, 255), var(--rim-a, 0.45)) 0%,
+    rgba(var(--rim, 255, 255, 255), var(--rim-b, 0.15)) 20%,
+    rgba(var(--rim, 255, 255, 255), 0) 40%,
+    rgba(var(--rim, 255, 255, 255), 0) 60%,
+    rgba(var(--rim, 255, 255, 255), var(--rim-b, 0.15)) 80%,
+    rgba(var(--rim, 255, 255, 255), var(--rim-a, 0.45)) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+.liquid-glass--strong {
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+.liquid-glass--strong::before { --rim-a: 0.5; --rim-b: 0.2; }
+
+.liquid-glass--node {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.012) 55%, rgba(255, 255, 255, 0.03));
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), inset 0 -18px 30px -20px rgba(0, 0, 0, 0.6),
+    0 24px 50px -26px rgba(0, 0, 0, 0.9);
+}
+.liquid-glass--node::before { --rim-a: 0.5; --rim-b: 0.18; }
+.liquid-glass--accent::before { --rim: 200, 255, 77; --rim-a: 0.7; --rim-b: 0.28; }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass { background: rgba(255, 255, 255, 0.08); }
+}
+
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 1rem 1.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  transition: transform 0.3s var(--ease-out-expo), color 0.3s ease;
+}
+.btn-glass:hover { transform: scale(1.03); color: #fff; }
+
+.btn-lime {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 999px;
+  padding: 1rem 1.75rem;
+  font-weight: 800;
+  color: #0a0a0b;
+  text-decoration: none;
+  background: linear-gradient(180deg, #d9ff7d, #c8ff4d 55%, #b4eb2f);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 0 1px rgba(200, 255, 77, 0.25),
+    0 0 26px rgba(200, 255, 77, 0.3), 0 0 60px rgba(200, 255, 77, 0.12);
+  transition: box-shadow 0.35s ease;
+  will-change: transform;
+}
+.btn-lime::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.5) 48%, transparent 76%);
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+}
+.btn-lime:hover::after { transform: translateX(130%); }
+.btn-lime:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 0 1px rgba(200, 255, 77, 0.4),
+    0 0 36px rgba(200, 255, 77, 0.45), 0 0 80px rgba(200, 255, 77, 0.18);
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0a0a0b;
+  background: linear-gradient(180deg, #fff, #e7e7e7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: box-shadow 0.35s ease, transform 0.3s var(--ease-out-expo);
+}
+.btn-white:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 #fff, 0 0 22px rgba(255, 255, 255, 0.25); }
+
+.ghost-word {
+  font-family: var(--font-ghost), Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 34cqw;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(200, 255, 77, 0) 0%, rgba(200, 255, 77, 0.95) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.ping-dot { position: relative; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+.ping-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--lime);
+  animation: ping 2.4s var(--ease-out-expo) infinite;
+}
+@keyframes ping { 0% { transform: scale(1); opacity: 0.6; } 80%, 100% { transform: scale(3.2); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .in-fade, .in-down, .mw-i, .mw-accent, .ping-dot::after { animation: none !important; }
+  .mw-accent { background-position: 30% center; }
+  .btn-lime::after { transition: none; }
+}
